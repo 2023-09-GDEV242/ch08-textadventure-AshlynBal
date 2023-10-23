@@ -49,6 +49,7 @@ public class RoomCreator {
 
     private void addItems() {
         outside.addItem(new Item("Apple", "An apple you found hanging from a tree", 1));
+        outside.addEntity(new Container("Box", new Item("Book", "A book about apples", 1)));
         office.addItem(new Item("Mug", "Mug saying \"World's Best Admin\"", 0.5));
     }
 }

@@ -58,6 +58,10 @@ public class CommandManager {
                 take(command);
                 break;
 
+            case INTERACT:
+                interact(command);
+                break;
+
             case QUIT:
                 wantToQuit = quit(command);
                 break;
@@ -140,6 +144,25 @@ public class CommandManager {
         player.give(item);
         player.getCurrentRoom().removeItem(item);
         System.out.println("Took " + item.getName() + " from the room.");
+    }
+
+    private void interact(Command command) {
+        if (!player.getCurrentRoom().hasEntities()) {
+            // There is nothing in the room to interact with
+            System.out.println("The room has nothing to interact with.");
+            return;
+        }
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to interact with...
+            System.out.println("Interact with what?");
+            return;
+        }
+        Entity entity = player.getCurrentRoom().getEntity(command.getSecondWord());
+        if (entity == null) {
+            System.out.println("That isn't in this room.");
+            return;
+        }
+        entity.interact(player);
     }
 
     /**

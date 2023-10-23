@@ -21,6 +21,7 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Item> items;
+    private ArrayList<Entity> entities;
 
     /**
      * Create a room described "description". Initially, it has
@@ -33,6 +34,7 @@ public class Room {
         this.description = description;
         exits = new HashMap<>();
         items = new ArrayList<>();
+        entities = new ArrayList<>();
     }
 
     /**
@@ -43,6 +45,41 @@ public class Room {
      */
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
+    }
+
+    public void addEntity(Entity entity) {
+        entities.add(entity);
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
+
+    public Entity getEntity(String key) {
+        for (Entity entity : entities) {
+            if (entity.getName().equalsIgnoreCase(key)) return entity;
+        }
+        return null;
+    }
+
+    public boolean hasEntities() {
+        return !entities.isEmpty();
+    }
+
+    public boolean removeEntity(String name) {
+        int i = 0;
+        boolean success = false;
+        while (i < entities.size() && !success) {
+            if (entities.get(i).getName().equals(name)) {
+                entities.remove(i);
+                success = true;
+            }
+        }
+        return success;
+    }
+
+    public boolean removeEntity(Entity entity) {
+        return (entities.remove(entity));
     }
 
     public void addItem(Item item) {
@@ -103,7 +140,8 @@ public class Room {
      */
     public String getLongDescription() {
         String output = "You are " + description + ".\n";
-        if (!items.isEmpty()) output += "You find: " + getItemString() + ".\n";
+        if (!items.isEmpty()) output += "Items: " + getItemString() + ".\n";
+        if (!entities.isEmpty()) output += "You find: " + getEntityString() + ".\n";
         output += getExitString();
         return output;
     }
@@ -137,6 +175,12 @@ public class Room {
     private String getItemString() {
         StringJoiner stringJoiner = new StringJoiner(", ");
         items.forEach(a -> stringJoiner.add(a.getName()));
+        return stringJoiner.toString();
+    }
+
+    private String getEntityString() {
+        StringJoiner stringJoiner = new StringJoiner(", ");
+        entities.forEach(a -> stringJoiner.add(a.getName()));
         return stringJoiner.toString();
     }
 }
