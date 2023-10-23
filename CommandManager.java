@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class is part of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game.
@@ -46,6 +48,10 @@ public class CommandManager {
 
             case BACK:
                 goBack(command);
+                break;
+
+            case INVENTORY:
+                inventory();
                 break;
 
             case TAKE:
@@ -103,6 +109,16 @@ public class CommandManager {
 
     private void look() {
         System.out.println(player.getCurrentRoom().getLongDescription());
+    }
+
+    private void inventory() {
+        ArrayList<Item> inventory = player.getInventory();
+        if (inventory.isEmpty()) {
+            System.out.println("Your inventory is empty!");
+            return;
+        }
+        System.out.println("Inventory contents:");
+        inventory.forEach(a -> System.out.println(a.getLongText()));
     }
 
     private void take(Command command) {

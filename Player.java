@@ -81,4 +81,8 @@ public class Player {
     public boolean inventoryRemove(Item item) {
         return (inventory.remove(item));
     }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
 }
