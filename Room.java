@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.StringJoiner;
 
 /**
  * Class Room - a room in an adventure game.
@@ -13,7 +14,7 @@ import java.util.Set;
  * stores a reference to the neighboring room.
  *
  * @author Ashlyn Balicki, Michael Kölling and David J. Barnes
- * @version 2023.10.22
+ * @version 2023.10.23
  */
 
 public class Room {
@@ -46,6 +47,12 @@ public class Room {
 
     public void addItem(Item item) {
         items.add(item);
+    }
+
+    private void addItems(Item... items) {
+        for (Item item : items) {
+            addItem(item);
+        }
     }
 
     public ArrayList<Item> getItems() {
@@ -85,7 +92,7 @@ public class Room {
      */
     public String getLongDescription() {
         String output = "You are " + description + ".\n";
-        if (!items.isEmpty()) output += getItems() + ".\n";
+        if (!items.isEmpty()) output += "You find: " + getItemString() + ".\n";
         output += getExitString();
         return output;
     }
@@ -117,11 +124,9 @@ public class Room {
     }
 
     private String getItemString() {
-        StringBuilder returnString = new StringBuilder("Items: ");
-        for (Item item : items) {
-            returnString.append(", ").append(item.getName());
-        }
-        return returnString.toString();
+        StringJoiner stringJoiner = new StringJoiner(", ");
+        items.forEach(a -> stringJoiner.add(a.getName()));
+        return stringJoiner.toString();
     }
 }
 

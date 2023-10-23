@@ -13,6 +13,7 @@ public class RoomCreator {
 
     public RoomCreator() {
         createRooms();
+        addItems();
         startingRoom = outside;
     }
 
@@ -44,5 +45,9 @@ public class RoomCreator {
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+    }
+
+    private void addItems() {
+        office.addItem(new Item("Mug", "Mug saying \"World's Best Admin\"", 0.5));
     }
 }
