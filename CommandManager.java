@@ -48,6 +48,10 @@ public class CommandManager {
                 goBack(command);
                 break;
 
+            case TAKE:
+                take(command);
+                break;
+
             case QUIT:
                 wantToQuit = quit(command);
                 break;
@@ -97,6 +101,31 @@ public class CommandManager {
         } else player.goBack(1);
     }
 
+    private void look() {
+        System.out.println(player.getCurrentRoom().getLongDescription());
+    }
+
+    private void take(Command command) {
+        if (!player.getCurrentRoom().hasItems()) {
+            // There is nothing in the room to take
+            System.out.println("The room has no items.");
+            return;
+        }
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to take...
+            System.out.println("Take what?");
+            return;
+        }
+        Item item = player.getCurrentRoom().getItem(command.getSecondWord());
+        if (item == null) {
+            System.out.println("That item isn't in this room.");
+            return;
+        }
+        player.give(item);
+        player.getCurrentRoom().removeItem(item);
+        System.out.println("Took " + item.getName() + " from the room.");
+    }
+
     /**
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -110,9 +139,5 @@ public class CommandManager {
         } else {
             return true;  // signal that we want to quit
         }
-    }
-
-    private void look() {
-        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 }

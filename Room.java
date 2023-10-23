@@ -59,6 +59,17 @@ public class Room {
         return items;
     }
 
+    public Item getItem(String key) {
+        for (Item item : items) {
+            if (item.getName().equalsIgnoreCase(key)) return item;
+        }
+        return null;
+    }
+
+    public boolean hasItems() {
+        return !items.isEmpty();
+    }
+
     public boolean removeItem(String name) {
         int i = 0;
         boolean success = false;

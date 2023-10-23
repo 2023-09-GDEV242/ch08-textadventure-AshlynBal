@@ -13,6 +13,7 @@ public class Player {
 
     public Player() {
         path = new Stack<>();
+        inventory = new ArrayList<>();
     }
 
     public Room getCurrentRoom() {
@@ -61,7 +62,7 @@ public class Player {
         System.out.println(currentRoom.getLongDescription());
     }
 
-    public void inventoryAdd(Item item) {
+    public void give(Item item) {
         inventory.add(item);
     }
 
@@ -80,5 +81,4 @@ public class Player {
     public boolean inventoryRemove(Item item) {
         return (inventory.remove(item));
     }
-
 }
