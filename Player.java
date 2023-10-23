@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Stack;
 public class Player {
     private Room currentRoom;
     private Stack<Room> path;
+    private ArrayList<Item> inventory;
 
     public Player() {
         path = new Stack<>();
@@ -58,4 +60,25 @@ public class Player {
         setCurrentRoom(destination);
         System.out.println(currentRoom.getLongDescription());
     }
+
+    public void inventoryAdd(Item item) {
+        inventory.add(item);
+    }
+
+    public boolean inventoryRemove(String name) {
+        int i = 0;
+        boolean success = false;
+        while (i < inventory.size() && !success) {
+            if (inventory.get(i).getName().equals(name)) {
+                inventory.remove(i);
+                success = true;
+            }
+        }
+        return success;
+    }
+
+    public boolean inventoryRemove(Item item) {
+        return (inventory.remove(item));
+    }
+
 }
