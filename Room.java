@@ -48,6 +48,26 @@ public class Room {
         items.add(item);
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public boolean removeItem(String name) {
+        int i = 0;
+        boolean success = false;
+        while (i < items.size() && !success) {
+            if (items.get(i).getName().equals(name)) {
+                items.remove(i);
+                success = true;
+            }
+        }
+        return success;
+    }
+
+    public boolean removeItem(Item item) {
+        return (items.remove(item));
+    }
+
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -96,7 +116,7 @@ public class Room {
         return exits.get(direction);
     }
 
-    private String getItems() {
+    private String getItemString() {
         StringBuilder returnString = new StringBuilder("Items: ");
         for (Item item : items) {
             returnString.append(", ").append(item.getName());
