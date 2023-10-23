@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import java.util.Set;
 public class Room {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -29,6 +31,7 @@ public class Room {
     public Room(String description) {
         this.description = description;
         exits = new HashMap<>();
+        items = new ArrayList<>();
     }
 
     /**
@@ -39,6 +42,10 @@ public class Room {
      */
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 
     /**
@@ -57,7 +64,10 @@ public class Room {
      * @return A long description of this room
      */
     public String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
+        String output = "You are " + description + ".\n";
+        if (!items.isEmpty()) output += getItems() + ".\n";
+        output += getExitString();
+        return output;
     }
 
     /**
@@ -84,6 +94,14 @@ public class Room {
      */
     public Room getExit(String direction) {
         return exits.get(direction);
+    }
+
+    private String getItems() {
+        StringBuilder returnString = new StringBuilder("Items: ");
+        for (Item item : items) {
+            returnString.append(", ").append(item.getName());
+        }
+        return returnString.toString();
     }
 }
 
