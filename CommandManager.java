@@ -1,11 +1,11 @@
 /**
  * This class is part of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game.
- *
+ * <p>
  * This class is used to process and run commands.
  *
- * @author  Ashlyn Balicki
- * @version 2023.10.22
+ * @author Ashlyn Balicki
+ * @version 2023.10.23
  */
 public class CommandManager {
     Player player;
@@ -34,6 +34,10 @@ public class CommandManager {
 
             case HELP:
                 printHelp();
+                break;
+
+            case LOOK:
+                look();
                 break;
 
             case GO:
@@ -106,5 +110,9 @@ public class CommandManager {
         } else {
             return true;  // signal that we want to quit
         }
+    }
+
+    private void look() {
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 }
