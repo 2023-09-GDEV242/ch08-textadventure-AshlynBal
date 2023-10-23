@@ -1,3 +1,12 @@
+/**
+ * This class is part of the "World of Zuul" application.
+ * "World of Zuul" is a very simple, text based adventure game.
+ *
+ * This class is used to process and run commands.
+ *
+ * @author  Ashlyn Balicki
+ * @version 2023.10.22
+ */
 public class CommandManager {
     Player player;
     Parser parser;
@@ -29,6 +38,10 @@ public class CommandManager {
 
             case GO:
                 goRoom(command);
+                break;
+
+            case BACK:
+                goBack(command);
                 break;
 
             case QUIT:
@@ -64,6 +77,20 @@ public class CommandManager {
             return;
         }
         player.move(command.getSecondWord());
+    }
+
+    /**
+     * Retrace a number of rooms. If the second word is an integer, go back that many rooms. If there is no second word, go back one room. Otherwise, print an error message.
+     */
+    private void goBack(Command command) {
+        if (command.hasSecondWord()) {
+            // if the second "word" is a number, go back that many rooms
+            try {
+                player.goBack(Integer.parseInt(command.getSecondWord()));
+            } catch (NumberFormatException e) {
+                System.out.println(command.getSecondWord() + " isn't a valid number!");
+            }
+        } else player.goBack(1);
     }
 
     /**

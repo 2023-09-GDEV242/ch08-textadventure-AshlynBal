@@ -1,11 +1,16 @@
 import java.util.Stack;
 
+/**
+ * @author Ashlyn Balicki
+ * @version 2023.10.22
+ */
+
 public class Player {
     private Room currentRoom;
-    private Stack<Room> path = new Stack<>();
+    private Stack<Room> path;
 
     public Player() {
-
+        path = new Stack<>();
     }
 
     public Room getCurrentRoom() {
@@ -25,7 +30,32 @@ public class Player {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
+            path.push(nextRoom);
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+
+    public void goBack(int amount) {
+        Room destination = null;
+        int i = 0;
+
+        if (amount <= 0) {
+            System.out.println("You can't go back " + amount + " rooms!");
+            return;
+        }
+        if (path.size() == 1) {
+            System.out.println("You can't go back further!");
+            return;
+        }
+        while (!path.empty() && i < amount + 1) {
+            destination = path.pop();
+            i++;
+        }
+        if (path.empty()) {
+            System.out.println("You reached the end of the path.");
+        }
+        assert (destination != null);
+        setCurrentRoom(destination);
+        System.out.println(currentRoom.getLongDescription());
     }
 }
