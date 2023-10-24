@@ -57,7 +57,7 @@ public class Room {
 
     public Entity getEntity(String key) {
         for (Entity entity : entities) {
-            if (entity.getName().equalsIgnoreCase(key)) return entity;
+            if (entity.getID().equalsIgnoreCase(key)) return entity;
         }
         return null;
     }
@@ -140,8 +140,8 @@ public class Room {
      */
     public String getLongDescription() {
         String output = "You are " + description + ".\n";
-        if (!items.isEmpty()) output += "Items: " + getItemString() + ".\n";
-        if (!entities.isEmpty()) output += "You find: " + getEntityString() + ".\n";
+        if (!items.isEmpty()) output += "Items: " + getItemString() + "\n";
+        if (!entities.isEmpty()) output += "You find: " + getEntityString() + "\n";
         output += getExitString();
         return output;
     }

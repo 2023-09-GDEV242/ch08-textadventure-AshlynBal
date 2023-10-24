@@ -14,6 +14,7 @@ public class RoomCreator {
     public RoomCreator() {
         createRooms();
         addItems();
+        addEntities();
         startingRoom = outside;
     }
 
@@ -42,14 +43,18 @@ public class RoomCreator {
         pub.setExit("east", outside);
 
         lab.setExit("north", outside);
-        lab.setExit("east", office);
+//        lab.setExit("east", office);
 
         office.setExit("west", lab);
     }
 
     private void addItems() {
         outside.addItem(new Item("Apple", "An apple you found hanging from a tree", 1));
-        outside.addEntity(new Container("Box", new Item("Book", "A book about apples", 1)));
         office.addItem(new Item("Mug", "Mug saying \"World's Best Admin\"", 0.5));
+    }
+
+    private void addEntities() {
+        outside.addEntity(new Container("Box", new Item("Key", "Office Key", "Used to unlock the office door", .1)));
+        lab.addEntity(new LockedDoor("Office Door", "Door", "Office Key", office, "east", null));
     }
 }

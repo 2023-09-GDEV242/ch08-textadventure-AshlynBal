@@ -1,10 +1,16 @@
 public class Item {
     private String name;
+    private String id;
     private String description;
     private double weight;
 
     public Item(String name, String description, double weight) {
+        this(name, name, description, weight);
+    }
+
+    public Item(String name, String id, String description, double weight) {
         this.name = name;
+        this.id = id;
         this.description = description;
         this.weight = weight;
     }
@@ -35,5 +41,9 @@ public class Item {
 
     public String getLongText() {
         return name + " (" + weight + " lbs) - " + description;
+    }
+
+    public String getID() {
+        return id;
     }
 }

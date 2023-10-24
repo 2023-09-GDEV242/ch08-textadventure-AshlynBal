@@ -1,9 +1,15 @@
 public class Container implements Entity {
     Item item;
     String name;
+    String id;
 
     public Container(String name, Item item) {
+        this(name, name, item);
+    }
+
+    public Container(String name, String id, Item item) {
         this.name = name;
+        this.id = id;
         this.item = item;
     }
 
@@ -20,6 +26,12 @@ public class Container implements Entity {
 
     @Override
     public String getName() {
-        return name;
+        if (id.equals(name)) return name;
+        return name + " (" + id + ")";
+    }
+
+    @Override
+    public String getID() {
+        return id;
     }
 }
