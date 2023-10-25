@@ -31,7 +31,7 @@ public class Container implements Entity {
     }
 
     @Override
-    public String getID() {
+    public String getId() {
         return id;
     }
 }

@@ -38,6 +38,11 @@ public class Player {
         }
     }
 
+    public void teleport(Room newRoom) {
+        setCurrentRoom(newRoom);
+        System.out.println(newRoom.getLongDescription());
+    }
+
     public void goBack(int amount) {
         Room destination = null;
         int i = 0;

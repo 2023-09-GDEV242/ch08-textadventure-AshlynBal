@@ -7,11 +7,11 @@
  * @author Ashlyn Balicki
  * @version 2023.10.23
  */
-public class RoomCreator {
+public class RoomManager {
     private Room startingRoom;
-    private Room outside, theater, pub, lab, office;
+    public static Room outside, theater, pub, lab, office, transporter;
 
-    public RoomCreator() {
+    public RoomManager() {
         createRooms();
         addItems();
         addEntities();
@@ -32,6 +32,7 @@ public class RoomCreator {
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        transporter = new Room("in a place beyond space");
 
         // initialise room exits
         outside.setExit("east", theater);
@@ -54,7 +55,9 @@ public class RoomCreator {
     }
 
     private void addEntities() {
-        outside.addEntity(new Container("Box", new Item("Key", "Office Key", "Used to unlock the office door", .1)));
-        lab.addEntity(new LockedDoor("Office Door", "Door", "Office Key", office, "east", null));
+        outside.addEntity(new Container("Box", new Item("Key", "Office_Key", "Used to unlock the office door", .1)));
+        lab.addEntity(new LockedDoor("Office Door", "Door", "Office_Key", office, "east", null));
+        office.addEntity(new Transporter("office"));
+        theater.addEntity(new Transporter("theater"));
     }
 }

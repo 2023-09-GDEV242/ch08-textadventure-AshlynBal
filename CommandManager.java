@@ -58,7 +58,7 @@ public class CommandManager {
                 take(command);
                 break;
 
-            case INTERACT:
+            case USE:
                 interact(command);
                 break;
 

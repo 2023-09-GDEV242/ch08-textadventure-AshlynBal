@@ -19,7 +19,7 @@ public class Game {
     private Parser parser;
     private Player player;
     private CommandManager commandManager;
-    private RoomCreator roomCreator;
+    private RoomManager roomManager;
 
     /**
      * Create the game and initialise its internal map.
@@ -29,8 +29,8 @@ public class Game {
         parser = new Parser();
         commandManager = new CommandManager(player, parser);
         // Creates rooms and dictates starting location
-        roomCreator = new RoomCreator();
-        player.setCurrentRoom(roomCreator.getStartingRoom());  // start game outside
+        roomManager = new RoomManager();
+        player.setCurrentRoom(roomManager.getStartingRoom());  // start game outside
     }
 
     /**

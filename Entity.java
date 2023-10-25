@@ -3,5 +3,5 @@ public interface Entity {
 
     String getName();
 
-    String getID();
+    String getId();
 }

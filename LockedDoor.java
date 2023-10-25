@@ -29,7 +29,7 @@ public class LockedDoor implements Entity {
             }
         }
         if (key == null) {
-            System.out.println("You do not have a key to open this door!");
+            System.out.println("You do not have the key to open this door!");
             return;
         }
         System.out.println("You open the " + name + "!");
@@ -47,7 +47,7 @@ public class LockedDoor implements Entity {
     }
 
     @Override
-    public String getID() {
+    public String getId() {
         return id;
     }
 }

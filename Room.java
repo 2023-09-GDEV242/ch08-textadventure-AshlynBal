@@ -57,7 +57,7 @@ public class Room {
 
     public Entity getEntity(String key) {
         for (Entity entity : entities) {
-            if (entity.getID().equalsIgnoreCase(key)) return entity;
+            if (entity.getId().equalsIgnoreCase(key)) return entity;
         }
         return null;
     }
