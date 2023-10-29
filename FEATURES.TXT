@@ -16,3 +16,4 @@ Extra Credit:
     Added boxes - store items in room without telling the player its contents
     Drop command - drops items into room
     Added gold currency
+    Ability to have multiple maps, controlled in Main

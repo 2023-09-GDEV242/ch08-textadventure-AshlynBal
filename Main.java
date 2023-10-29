@@ -6,7 +6,17 @@
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        DungeonChoice choice = DungeonChoice.SCHOOL;
+        Dungeon dungeon = switch (choice) {
+            case SCHOOL -> new DungeonSchool();
+        };
+
+        Game game = new Game(dungeon);
         game.play();
     }
+
+    enum DungeonChoice {
+        SCHOOL
+    }
+
 }

@@ -7,14 +7,14 @@
  * @author Ashlyn Balicki
  * @version 2023.10.29
  */
-public class RoomManager {
+public class DungeonSchool implements Dungeon {
     private Room startingRoom;
-    public static Room outside, theater, pub, lab, office, transporter;
+    public static Room outside, theater, pub, lab, office;
 
     /**
      * Constructor for class
      */
-    public RoomManager() {
+    public DungeonSchool() {
         createRooms();
         addItems();
         addEntities();
@@ -40,7 +40,6 @@ public class RoomManager {
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        transporter = new Room("in a place beyond space");
 
         // initialise room exits
         outside.setExit("east", theater);

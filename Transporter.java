@@ -32,13 +32,13 @@ public class Transporter implements Entity {
     @Override
     public void interact(Player player) {
         if (!isActive) {
-            RoomManager.transporter.setExit(origin, player.getCurrentRoom());
+            Dungeon.transporter.setExit(origin, player.getCurrentRoom());
             isActive = true;
             System.out.println("The transporter hums as it powers on.");
             return;
         }
         System.out.println("You step into the machine.");
-        player.teleport(RoomManager.transporter);
+        player.teleport(DungeonSchool.transporter);
     }
 
     /**
