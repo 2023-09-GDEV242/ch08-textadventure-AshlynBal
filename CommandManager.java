@@ -126,9 +126,10 @@ public class CommandManager {
      * Prints the contents of your inventory, as well as their weights and descriptions.
      */
     private void inventory() {
+        System.out.println(player.getGold() + " gp");
         ArrayList<Item> inventory = player.getInventory();
         if (inventory.isEmpty()) {
-            System.out.println("Your inventory is empty!");
+            System.out.println("You have no items!");
             return;
         }
         System.out.println("Inventory contents:");

@@ -15,6 +15,7 @@ public class Player {
     private Room currentRoom;
     private Stack<Room> path;
     private ArrayList<Item> inventory;
+    private int gold;
 
     /**
      * Constructor for Player
@@ -22,6 +23,7 @@ public class Player {
     public Player() {
         path = new Stack<>();
         inventory = new ArrayList<>();
+        gold = 0;
     }
 
     /**
@@ -106,6 +108,10 @@ public class Player {
      * @param item item to get added to the player's inventory
      */
     public void give(Item item) {
+        if (item instanceof Gold) {
+            gold += ((Gold) item).getValue();
+            return;
+        }
         inventory.add(item);
     }
 
@@ -161,4 +167,21 @@ public class Player {
         return null;
     }
 
+    /**
+     * Getter for player's gold
+     *
+     * @return how much gold player has
+     */
+    public int getGold() {
+        return gold;
+    }
+
+    /**
+     * Adds or subtracts gold
+     *
+     * @param difference how much gp to add/subtract
+     */
+    public void changeGold(int difference) {
+        gold += difference;
+    }
 }
