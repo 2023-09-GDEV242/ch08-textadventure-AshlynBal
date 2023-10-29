@@ -58,6 +58,10 @@ public class CommandManager {
                 take(command);
                 break;
 
+            case DROP:
+                drop(command);
+                break;
+
             case USE:
                 interact(command);
                 break;
@@ -153,6 +157,25 @@ public class CommandManager {
         player.give(item);
         player.getCurrentRoom().removeItem(item);
         System.out.println("Took " + item.getName() + " from the room.");
+    }
+
+    /**
+     * Drops an item from the players inventory into the room.
+     */
+    private void drop(Command command) {
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what item to drop...
+            System.out.println("Drop what?");
+            return;
+        }
+        Item item = player.getItem(command.getSecondWord());
+        if (item == null) {
+            System.out.println("You don't have that item.");
+            return;
+        }
+        player.getCurrentRoom().addItem(item);
+        player.inventoryRemove(item);
+        System.out.println("Dropped the " + item.getName() + " in the room!");
     }
 
     /**
