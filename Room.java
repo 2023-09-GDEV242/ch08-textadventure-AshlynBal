@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * Class Room - a room in an adventure game.
@@ -48,12 +45,12 @@ public class Room {
     }
 
     /**
-     * Adds a new entity to the room
+     * Adds any amount of entities to the room
      *
-     * @param entity entity to get added to room
+     * @param entities entities to get added
      */
-    public void addEntity(Entity entity) {
-        entities.add(entity);
+    public void addEntity(Entity... entities) {
+        this.entities.addAll(Arrays.asList(entities));
     }
 
     /**
@@ -117,23 +114,12 @@ public class Room {
     }
 
     /**
-     * Adds an item to the room
-     *
-     * @param item item to add to room
-     */
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    /**
-     * Adds one or more items to the room
+     * Adds any amount of items to the room
      *
      * @param items items to get added
      */
-    private void addItems(Item... items) {
-        for (Item item : items) {
-            addItem(item);
-        }
+    public void addItem(Item... items) {
+        this.items.addAll(Arrays.asList(items));
     }
 
     /**
