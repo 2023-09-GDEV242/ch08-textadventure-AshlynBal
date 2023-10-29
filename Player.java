@@ -2,8 +2,13 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
+ * This class is part of the "World of Zuul" application.
+ * "World of Zuul" is a very simple, text based adventure game.
+ * <p>
+ * This class is a representation of the player's character, alongside their inventory and current room.
+ *
  * @author Ashlyn Balicki
- * @version 2023.10.22
+ * @version 2023.10.29
  */
 
 public class Player {
@@ -11,20 +16,38 @@ public class Player {
     private Stack<Room> path;
     private ArrayList<Item> inventory;
 
+    /**
+     * Constructor for Player
+     */
     public Player() {
         path = new Stack<>();
         inventory = new ArrayList<>();
     }
 
+    /**
+     * Getter for the room the player is currently in
+     *
+     * @return player's current room
+     */
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
+    /**
+     * Setter for the player's current room
+     *
+     * @param newRoom room to put player into
+     */
     public void setCurrentRoom(Room newRoom) {
         this.currentRoom = newRoom;
         path.push(newRoom);
     }
 
+    /**
+     * Moves player to another room in given direction, provided an entrance
+     *
+     * @param direction direction to move player
+     */
     public void move(String direction) {
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
@@ -38,11 +61,21 @@ public class Player {
         }
     }
 
+    /**
+     * Moves player to another room and prints the room description
+     *
+     * @param newRoom room to put player into
+     */
     public void teleport(Room newRoom) {
         setCurrentRoom(newRoom);
         System.out.println(newRoom.getLongDescription());
     }
 
+    /**
+     * Retraces the path the player took. The player goes back an amount of rooms equal to the input.
+     *
+     * @param amount amount of rooms to go back
+     */
     public void goBack(int amount) {
         Room destination = null;
         int i = 0;
@@ -67,9 +100,21 @@ public class Player {
         System.out.println(currentRoom.getLongDescription());
     }
 
+    /**
+     * Adds an item to the player's inventory
+     *
+     * @param item item to get added to the player's inventory
+     */
     public void give(Item item) {
         inventory.add(item);
     }
+
+    /**
+     * Removes an item from the player's inventory
+     *
+     * @param name name of the object to remove
+     * @return if the operation was successful
+     */
 
     public boolean inventoryRemove(String name) {
         int i = 0;
@@ -83,10 +128,21 @@ public class Player {
         return success;
     }
 
+    /**
+     * Removes an item from the player's inventory
+     *
+     * @param item item to get removed
+     * @return if the operation was successful
+     */
     public boolean inventoryRemove(Item item) {
         return (inventory.remove(item));
     }
 
+    /**
+     * Getter for player's inventory
+     *
+     * @return player's inventory
+     */
     public ArrayList<Item> getInventory() {
         return inventory;
     }

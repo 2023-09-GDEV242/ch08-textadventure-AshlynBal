@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * This class is used to process and run commands.
  *
  * @author Ashlyn Balicki
- * @version 2023.10.23
+ * @version 2023.10.29
  */
 public class CommandManager {
     Player player;
@@ -111,10 +111,16 @@ public class CommandManager {
         } else player.goBack(1);
     }
 
+    /**
+     * Repeats the description of the room that is said when entering a room.
+     */
     private void look() {
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
+    /**
+     * Prints the contents of your inventory, as well as their weights and descriptions.
+     */
     private void inventory() {
         ArrayList<Item> inventory = player.getInventory();
         if (inventory.isEmpty()) {
@@ -125,6 +131,9 @@ public class CommandManager {
         inventory.forEach(a -> System.out.println(a.getLongText()));
     }
 
+    /**
+     * Takes an object from the room, putting it in your inventory.
+     */
     private void take(Command command) {
         if (!player.getCurrentRoom().hasItems()) {
             // There is nothing in the room to take
@@ -146,6 +155,9 @@ public class CommandManager {
         System.out.println("Took " + item.getName() + " from the room.");
     }
 
+    /**
+     * Interacts with an entity in the room, such as chests, locked doors, and teleporters.
+     */
     private void interact(Command command) {
         if (!player.getCurrentRoom().hasEntities()) {
             // There is nothing in the room to interact with
