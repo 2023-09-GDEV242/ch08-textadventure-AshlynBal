@@ -69,8 +69,8 @@ public class RoomManager {
      * Places entities into the rooms
      */
     private void addEntities() {
-        outside.addEntity(new Container("Box", new Item("Key", "Office_Key", "Used to unlock the office door", .1)));
-        lab.addEntity(new LockedDoor("Office Door", "Door", "Office_Key", office, "east", null));
+        outside.addEntity(new Container("Box", new Item("Office Key", "Key", "Used to unlock the office door", .1)));
+        lab.addEntity(new LockedDoor("Office Door", "Door", "Office Key", office, "east", null));
         office.addEntity(new Transporter("office"));
         theater.addEntity(new Transporter("theater"));
     }

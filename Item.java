@@ -94,12 +94,25 @@ public class Item {
     }
 
     /**
+     * Returns name and a unique ID if it has one
+     *
+     * @return name and ID
+     */
+    public String getNameId() {
+        String output = name;
+        if (!id.equals(name)) {
+            output += " (" + id + ")";
+        }
+        return output;
+    }
+
+    /**
      * Returns a full description of the object, including name, weight, and description
      *
      * @return full description of object
      */
     public String getLongText() {
-        return name + " (" + weight + " lbs) - " + description;
+        return getNameId() + " (" + weight + " lbs) - " + description;
     }
 
     /**

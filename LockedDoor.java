@@ -53,7 +53,7 @@ public class LockedDoor implements Entity {
     public void interact(Player player) {
         Item key = null;
         for (Item item : player.getInventory()) {
-            if (item.getID().equalsIgnoreCase(keyName)) {
+            if (item.getName().equalsIgnoreCase(keyName)) {
                 key = item;
                 break;
             }

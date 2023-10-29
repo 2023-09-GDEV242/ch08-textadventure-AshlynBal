@@ -146,4 +146,19 @@ public class Player {
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+
+    /**
+     * Gets an item in the room with the given ID or name
+     *
+     * @param id ID / name to search for
+     * @return the item if found, else null
+     */
+    public Item getItem(String id) {
+        for (Item item : inventory) {
+            if (item.getID().equalsIgnoreCase(id) || item.getName().equalsIgnoreCase(id))
+                return item;
+        }
+        return null;
+    }
+
 }

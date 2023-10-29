@@ -73,7 +73,8 @@ public class Room {
      */
     public Entity getEntity(String id) {
         for (Entity entity : entities) {
-            if (entity.getId().equalsIgnoreCase(id)) return entity;
+            if (entity.getId().equalsIgnoreCase(id) || entity.getName().equalsIgnoreCase(id))
+                return entity;
         }
         return null;
     }
@@ -145,14 +146,15 @@ public class Room {
     }
 
     /**
-     * Gets an item in the room with the given ID
+     * Gets an item in the room with the given ID or name
      *
-     * @param id ID to search for
+     * @param id ID / name to search for
      * @return the item if found, else null
      */
     public Item getItem(String id) {
         for (Item item : items) {
-            if (item.getID().equalsIgnoreCase(id)) return item;
+            if (item.getID().equalsIgnoreCase(id) || item.getName().equalsIgnoreCase(id))
+                return item;
         }
         return null;
     }
@@ -250,7 +252,7 @@ public class Room {
      */
     private String getItemString() {
         StringJoiner stringJoiner = new StringJoiner(", ");
-        items.forEach(a -> stringJoiner.add(a.getName() + " (" + a.getID() + ")"));
+        items.forEach(a -> stringJoiner.add(a.getNameId()));
         return stringJoiner.toString();
     }
 
