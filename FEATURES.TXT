@@ -1,0 +1,17 @@
+Intermediate Level:
+    Items
+
+Advanced Level:
+    Charged transporter
+    Locked doors and keys
+
+Extra Credit:
+    2 extra intermediate
+        Retrace your steps
+        Player class
+    Rooms have inventory (implemented when adding the ability for rooms to store items)
+    Ability to take items from rooms
+    View player inventory
+    Implemented use command alongside interactable entities
+    Added boxes - store items in room without telling the player its contents
+    Drop command - drops items into room
