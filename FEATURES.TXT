@@ -18,3 +18,4 @@ Extra Credit:
     Added gold currency
     Ability to have multiple maps, controlled in Main
     Added functionality to dropping items in certain rooms
+    Added item spawning entities
