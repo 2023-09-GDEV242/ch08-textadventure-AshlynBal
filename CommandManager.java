@@ -155,9 +155,15 @@ public class CommandManager {
             System.out.println("That item isn't in this room.");
             return;
         }
-        player.give(item);
+        if (item instanceof Gold) {
+            player.changeGold(((Gold) item).getValue());
+            System.out.println("Took " + ((Gold) item).getValue() + " gp from the room.");
+        } else {
+            player.give(item);
+            System.out.println("Took " + item.getName() + " from the room.");
+        }
         player.getCurrentRoom().removeItem(item);
-        System.out.println("Took " + item.getName() + " from the room.");
+        player.getCurrentRoom().onTake(item);
     }
 
     /**

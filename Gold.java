@@ -1,3 +1,9 @@
+/**
+ * An item representation of gold pieces
+ *
+ * @author Ashlyn Balicki
+ * @version 2023.10.29
+ **/
 public class Gold extends Item {
     private int value;
 

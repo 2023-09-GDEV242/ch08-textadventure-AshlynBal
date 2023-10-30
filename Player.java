@@ -108,10 +108,6 @@ public class Player {
      * @param item item to get added to the player's inventory
      */
     public void give(Item item) {
-        if (item instanceof Gold) {
-            gold += ((Gold) item).getValue();
-            return;
-        }
         inventory.add(item);
     }
 
@@ -183,5 +179,29 @@ public class Player {
      */
     public void changeGold(int difference) {
         gold += difference;
+    }
+
+    /**
+     * Getter for keys in player's inventory
+     *
+     * @return keys in player's inventory
+     */
+    public ArrayList<Key> getKeys() {
+        ArrayList<Key> keys = new ArrayList<>();
+        for (Item item : inventory) {
+            if (item instanceof Key) {
+                keys.add((Key) item);
+            }
+        }
+        return keys;
+    }
+
+    public Key getKey(Key.Tier tier) {
+        for (Key key : getKeys()) {
+            if (key.tier.equals(tier)) {
+                return key;
+            }
+        }
+        return null;
     }
 }

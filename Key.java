@@ -1,3 +1,9 @@
+/**
+ * Keys that are used in locks in some entities
+ *
+ * @author Ashlyn Balicki
+ * @version 2023.10.29
+ */
 public class Key extends Item {
     Tier tier;
 
@@ -7,7 +13,7 @@ public class Key extends Item {
      * @param tier tier of the key
      */
     public Key(Tier tier) {
-        super(tier + " Key", "Key", "A key used to unlock " + tier.toString().toLowerCase() + " doors.", Math.PI);
+        super(tier + " Key", "Key", "A key used to unlock " + tier.toString().toLowerCase() + " doors.", 1);
         this.tier = tier;
     }
 

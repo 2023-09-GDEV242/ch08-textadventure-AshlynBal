@@ -220,7 +220,7 @@ public class Room {
      *
      * @return Details of the room's exits.
      */
-    private String getExitString() {
+    public String getExitString() {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
@@ -245,7 +245,7 @@ public class Room {
      *
      * @return string of all items in the room
      */
-    private String getItemString() {
+    public String getItemString() {
         StringJoiner stringJoiner = new StringJoiner(", ");
         items.forEach(a -> stringJoiner.add(a.getNameId()));
         return stringJoiner.toString();
@@ -256,13 +256,43 @@ public class Room {
      *
      * @return string of all entities in the room
      */
-    private String getEntityString() {
+    public String getEntityString() {
         StringJoiner stringJoiner = new StringJoiner(", ");
         entities.forEach(a -> stringJoiner.add(a.getName()));
         return stringJoiner.toString();
     }
 
+    /**
+     * Checks if the room has a specific item
+     *
+     * @param target item to test for
+     * @return if the item was found
+     */
+    public boolean hasItem(Item target) {
+        for (Item item : items) {
+            if (target.equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Run whenever an item is dropped in this room
+     *
+     * @param item item that was dropped
+     */
     public void onDrop(Item item) {
+        // Intentionally blank
+    }
+
+    /**
+     * Run whenever an item is picked up in this room
+     *
+     * @param item item that was picked up
+     */
+    public void onTake(Item item) {
         // Intentionally blank
     }
 }

@@ -1,18 +1,44 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ * A class that puts items in the room after being used
+ *
+ * @author Ashlyn Balicki
+ * @version 10/29/2023
+ */
+
 public class ItemSpawner implements Entity {
     private String name;
     private String id;
-    private Item item;
+    private ArrayList<Item> items;
     private String spawnText;
 
-    public ItemSpawner(String name, String spawnText, Item item) {
-        this(name, name, spawnText, item);
+    /**
+     * Constructor
+     *
+     * @param name      spawner name
+     * @param spawnText text used when spawning items
+     * @param items     items spawned
+     */
+    public ItemSpawner(String name, String spawnText, Item... items) {
+        this(name, name, spawnText, items);
     }
 
-    public ItemSpawner(String name, String id, String spawnText, Item item) {
+    /**
+     * Constructor
+     *
+     * @param name      spawner name
+     * @param id        spawner ID
+     * @param spawnText text used when spawning items
+     * @param items     items spawned
+     */
+    public ItemSpawner(String name, String id, String spawnText, Item... items) {
         this.name = name;
         this.id = id;
-        this.item = item;
         this.spawnText = spawnText;
+        this.items = new ArrayList<>();
+        this.items.addAll(Arrays.asList(items));
     }
 
     /**
@@ -22,7 +48,9 @@ public class ItemSpawner implements Entity {
      */
     @Override
     public void interact(Player player) {
-        player.getCurrentRoom().addItem(item);
+        for (Item item : items) {
+            player.getCurrentRoom().addItem(item);
+        }
         player.getCurrentRoom().removeEntity(this);
         System.out.println(spawnText);
     }

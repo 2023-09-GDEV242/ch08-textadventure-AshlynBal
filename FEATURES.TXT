@@ -13,7 +13,8 @@ Extra Credit:
     Ability to take items from rooms
     View player inventory
     Implemented use command alongside interactable entities
-    Added boxes - store items in room without telling the player its contents
+    Added containers - store items in room without telling the player its contents
+        Added lockable containers
     Drop command - drops items into room
     Added gold currency
     Ability to have multiple maps, controlled in Main
