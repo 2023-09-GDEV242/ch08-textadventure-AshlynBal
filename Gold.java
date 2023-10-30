@@ -2,6 +2,15 @@ public class Gold extends Item {
     private int value;
 
     /**
+     * Constructor for gold
+     *
+     * @param value how much gp this contains
+     */
+    public Gold(int value) {
+        this("Gold", value);
+    }
+
+    /**
      * Constructor for Gold
      *
      * @param name  name of the item

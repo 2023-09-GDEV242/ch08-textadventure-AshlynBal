@@ -177,6 +177,7 @@ public class CommandManager {
         player.getCurrentRoom().addItem(item);
         player.inventoryRemove(item);
         System.out.println("Dropped the " + item.getName() + " in the room!");
+        player.getCurrentRoom().onDrop(item);
     }
 
     /**

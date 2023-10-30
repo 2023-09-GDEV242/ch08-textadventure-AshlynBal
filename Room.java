@@ -206,6 +206,15 @@ public class Room {
     }
 
     /**
+     * Setter for description
+     *
+     * @param description new description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
      *
@@ -251,6 +260,10 @@ public class Room {
         StringJoiner stringJoiner = new StringJoiner(", ");
         entities.forEach(a -> stringJoiner.add(a.getName()));
         return stringJoiner.toString();
+    }
+
+    public void onDrop(Item item) {
+        // Intentionally blank
     }
 }
 
