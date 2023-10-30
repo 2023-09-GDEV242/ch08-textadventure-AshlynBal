@@ -6,9 +6,10 @@
  */
 public class Main {
     public static void main(String[] args) {
-        DungeonChoice choice = DungeonChoice.SCHOOL;
+        DungeonChoice choice = DungeonChoice.DUNGEON;
         Dungeon dungeon = switch (choice) {
             case SCHOOL -> new DungeonSchool();
+            case DUNGEON -> new Dungeon2();
         };
 
         Game game = new Game(dungeon);
@@ -16,7 +17,7 @@ public class Main {
     }
 
     enum DungeonChoice {
-        SCHOOL
+        SCHOOL, DUNGEON;
     }
 
 }

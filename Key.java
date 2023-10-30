@@ -7,7 +7,8 @@ public class Key extends Item {
      * @param tier tier of the key
      */
     public Key(Tier tier) {
-        super(tier + " key", "A key used to unlock " + tier + " doors.", 10);
+        super(tier + " Key", "Key", "A key used to unlock " + tier.toString().toLowerCase() + " doors.", Math.PI);
+        this.tier = tier;
     }
 
     /**
@@ -20,7 +21,7 @@ public class Key extends Item {
     }
 
     public enum Tier {
-        COPPER("copper"), IRON("iron"), GOLD("gold");
+        COPPER("Copper"), IRON("Iron"), GOLD("Gold");
         // The tier string.
         private String tier;
 

@@ -5,9 +5,6 @@
  * @version 2023.10.29
  */
 public class LockedDoor implements Entity {
-    String name;
-    String id;
-    //    String keyName;
     Key.Tier keyTier;
     Room destination;
     String direction;
@@ -48,7 +45,7 @@ public class LockedDoor implements Entity {
             System.out.println("You do not have the key to open this door!");
             return;
         }
-        System.out.println("You open the " + name + "!");
+        System.out.println("You open the " + doorTier() + "!");
         player.inventoryRemove(key);
         player.getCurrentRoom().setExit(direction, destination);
         if (returnDirection != null) destination.setExit(returnDirection, player.getCurrentRoom());
@@ -62,8 +59,23 @@ public class LockedDoor implements Entity {
      */
     @Override
     public String getName() {
-        if (id.equals(name)) return name;
-        return name + " (" + id + ")";
+        return doorTier() + " (door)";
+    }
+
+    /**
+     * Getter for door tier
+     *
+     * @return door string
+     */
+    public String doorTier() {
+        String name;
+        switch (keyTier) {
+            case COPPER -> name = "copper door";
+            case IRON -> name = "iron door";
+            case GOLD -> name = "gold door";
+            default -> throw new IllegalStateException("Unexpected value: " + keyTier);
+        }
+        return name;
     }
 
     /**
@@ -73,6 +85,6 @@ public class LockedDoor implements Entity {
      */
     @Override
     public String getId() {
-        return id;
+        return "door";
     }
 }
