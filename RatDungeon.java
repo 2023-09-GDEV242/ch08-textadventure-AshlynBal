@@ -9,7 +9,7 @@
  */
 public class RatDungeon implements Dungeon {
     private final Room startingRoom;
-    private static Room start, tutorial, hub, storeroom, mouseRoom, h1North, rubberRoom, rubberCloset, basement;
+    private static Room start, tutorial, hub, storeroom, mouseRoom, h1North, rubberRoom, rubberCloset, basement, filler1, filler2, filler3, filler4, filler5;
 
     /**
      * Constructor for class
@@ -45,6 +45,13 @@ public class RatDungeon implements Dungeon {
         rubberCloset = new Room("in a rubber closet");
         basement = new Room("in a basement");
 
+        filler1 = new Room("in empty room 1");
+        filler2 = new Room("in empty room 2");
+        filler3 = new Room("in empty room 3");
+        filler4 = new Room("in empty room 4");
+        filler5 = new Room("in empty room 5");
+
+
         // initialise room exits
         start.setExit("north", tutorial);
         tutorial.setExit("south", start);
@@ -64,6 +71,23 @@ public class RatDungeon implements Dungeon {
         rubberCloset.setExit("south", rubberRoom);
 
         basement.setExit("up", h1North);
+        basement.setExit("north", filler1);
+        basement.setExit("east", filler2);
+        basement.setExit("south", filler3);
+        basement.setExit("west", filler4);
+
+        filler1.setExit("south", basement);
+        filler1.setExit("west", filler5);
+
+        filler2.setExit("west", basement);
+
+        filler3.setExit("north", basement);
+
+        filler4.setExit("north", filler5);
+        filler4.setExit("east", basement);
+
+        filler5.setExit("east", filler1);
+        filler5.setExit("south", filler4);
     }
 
     /**
