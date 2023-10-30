@@ -7,7 +7,8 @@
 public class LockedDoor implements Entity {
     String name;
     String id;
-    String keyName;
+    //    String keyName;
+    Key.Tier keyTier;
     Room destination;
     String direction;
     String returnDirection;
@@ -15,30 +16,13 @@ public class LockedDoor implements Entity {
     /**
      * Constructor
      *
-     * @param name            name
-     * @param keyName         name of the key
+     * @param keyTier         tier of key needed
      * @param destination     room the passage leads to
      * @param direction       the direction of the passage
      * @param returnDirection the direction to return to the original room
      */
-    public LockedDoor(String name, String keyName, Room destination, String direction, String returnDirection) {
-        this(name, name, keyName, destination, direction, returnDirection);
-    }
-
-    /**
-     * Constructor
-     *
-     * @param name            name
-     * @param id              ID
-     * @param keyName         name of the key
-     * @param destination     room the passage leads to
-     * @param direction       the direction of the passage
-     * @param returnDirection the direction to return to the original room
-     */
-    public LockedDoor(String name, String id, String keyName, Room destination, String direction, String returnDirection) {
-        this.name = name;
-        this.id = id;
-        this.keyName = keyName;
+    public LockedDoor(Key.Tier keyTier, Room destination, String direction, String returnDirection) {
+        this.keyTier = keyTier;
         this.destination = destination;
         this.direction = direction;
         this.returnDirection = returnDirection;
@@ -51,11 +35,13 @@ public class LockedDoor implements Entity {
      */
     @Override
     public void interact(Player player) {
-        Item key = null;
+        Key key = null;
         for (Item item : player.getInventory()) {
-            if (item.getName().equalsIgnoreCase(keyName)) {
-                key = item;
-                break;
+            if (item instanceof Key) {
+                if (((Key) item).getTier().equals(keyTier)) {
+                    key = (Key) item;
+                    break;
+                }
             }
         }
         if (key == null) {
@@ -67,7 +53,6 @@ public class LockedDoor implements Entity {
         player.getCurrentRoom().setExit(direction, destination);
         if (returnDirection != null) destination.setExit(returnDirection, player.getCurrentRoom());
         player.getCurrentRoom().removeEntity(this);
-
     }
 
     /**
